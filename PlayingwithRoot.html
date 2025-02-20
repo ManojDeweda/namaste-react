@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayingwithRoot</title>
+  </head>
+  <body>
+    <h1>above tag</h1>
+    <!-- not impacted by root.render -->
+    <div id="root">
+      <!-- //the content inside it replaced when react script  loads-->
+      <h1>Privious Content in root</h1>
+    </div>
+    <h2 id="anotherroot">Below tag</h2>
+    <!-- not impacted by root.render -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script>
+      const heading = React.createElement(
+        "div",
+        {},
+        "Hello World using React in div"
+      );
+      const anotherheading = React.createElement(
+        "h1",
+        {},
+        "Hello World using React in h1"
+      );
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      const anotherroot = ReactDOM.createRoot(
+        document.getElementById("anotherroot")
+      );
+      // we can create multiple root and render multiple roots using below code
+      root.render(heading);
+      anotherroot.render([heading, anotherheading]); //   what if we pass two object here or array of object ,observed that it will create new element not replacing old content of root
+    </script>
+  </body>
+</html>
